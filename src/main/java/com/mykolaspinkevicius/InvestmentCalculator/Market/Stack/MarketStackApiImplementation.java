@@ -3,6 +3,7 @@ package com.mykolaspinkevicius.InvestmentCalculator.Market.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,15 +19,14 @@ public class MarketStackApiImplementation {
         try {
             URL stockPriceNowURL = new URL(MARKET_STACK_WEB_ADDRESS_FOR_REQUESTS + accessKey + "&symbols=" +
                     stockSymbol + LIMIT_TO_ONE_OBJECT);
-            URL stocks = new URL("https://eodhistoricaldata.com/api/eod/MCD.US?api_token={" + accessKey + "}");
-            HttpURLConnection conn = (HttpURLConnection) stocks.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) stockPriceNowURL.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
-            int responsecode = conn.getResponseCode();
-            if (responsecode != REQUEST_OK) {
-                throw new RuntimeException("HttpResponseCode " + responsecode);
+            int responseCode = conn.getResponseCode();
+            if (responseCode != REQUEST_OK) {
+                throw new RuntimeException("HttpResponseCode " + responseCode);
             } else {
-                Scanner sc = new Scanner(stocks.openStream());
+                Scanner sc = new Scanner(stockPriceNowURL.openStream());
                 String sb = "";
                 while(sc.hasNext()) {
                     sb += sc.nextLine();
