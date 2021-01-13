@@ -19,8 +19,8 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(StockRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new Stock(new BigDecimal(0.0380).setScale(4, RoundingMode.HALF_DOWN), "ISOL", "1MAGE Software Inc.")));
-            log.info("Preloading " + repository.save(new Stock(new BigDecimal(4.2100).setScale(4, RoundingMode.HALF_DOWN), "EIHDF", "888 Holdings PLC")));
+            log.info("Preloading " + repository.save(new Stock(new BigDecimal(0.00801).setScale(4, RoundingMode.HALF_DOWN), "ISOL", "1MAGE Software Inc.")));
+            log.info("Preloading " + repository.save(new Stock(new BigDecimal(0.00801).setScale(4, RoundingMode.HALF_DOWN), "EIHDF", "888 Holdings PLC")));
         };
     }
 }

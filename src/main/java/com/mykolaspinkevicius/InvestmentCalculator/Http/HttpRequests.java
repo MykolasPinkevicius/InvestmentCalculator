@@ -3,6 +3,7 @@ package com.mykolaspinkevicius.InvestmentCalculator.Http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mykolaspinkevicius.InvestmentCalculator.Market.Stack.MarketStack;
+import com.mykolaspinkevicius.InvestmentCalculator.Market.Stack.MarketStackData;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -14,16 +15,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Optional;
 
 public class HttpRequests {
     private static final int STATUS_OK = 200;
 
-    public static void getApacheHttpClientResponseFromURL(String marketStack) throws IOException {
+    public static Optional<String> getApacheHttpClientResponseFromURL(String marketStack) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        try(CloseableHttpClient client = HttpClients.createDefault()){
+        try(CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet request = new HttpGet(marketStack);
             CloseableHttpResponse response = client.execute(request);
-            if(response.getStatusLine().getStatusCode() == STATUS_OK){
+            if(response.getStatusLine().getStatusCode() == STATUS_OK) {
                 HttpEntity entity = response.getEntity();
                 InputStream is = entity.getContent();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -32,15 +34,13 @@ public class HttpRequests {
                 while ((output = br.readLine()) != null) {
                     jsonFromRequest.append(output);
                 }
-
                 ObjectMapper jsonObjectMapper = new ObjectMapper();
                 MarketStack paginationWithDataFromJson = jsonObjectMapper.readValue(jsonFromRequest.toString(), MarketStack.class);
-                paginationWithDataFromJson.getData().forEach(
-                        x -> System.out.println(x.getClose())
-                );
                 EntityUtils.consume(entity);
                 response.close();
+                return Optional.of(paginationWithDataFromJson.getData().stream().findAny().orElseGet(MarketStackData::new).getClose());
             }
         }
+        return Optional.empty();
     }
 }
