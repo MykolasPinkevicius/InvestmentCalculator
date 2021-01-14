@@ -1,4 +1,4 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Market.Stack;
+package com.mykolaspinkevicius.InvestmentCalculator.Entities;
 
 import java.util.List;
 import java.util.Objects;

@@ -2,8 +2,8 @@ package com.mykolaspinkevicius.InvestmentCalculator.Http;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mykolaspinkevicius.InvestmentCalculator.Market.Stack.MarketStack;
-import com.mykolaspinkevicius.InvestmentCalculator.Market.Stack.MarketStackData;
+import com.mykolaspinkevicius.InvestmentCalculator.Entities.MarketStack;
+import com.mykolaspinkevicius.InvestmentCalculator.Entities.MarketStackData;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
