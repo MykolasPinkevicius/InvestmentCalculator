@@ -29,7 +29,7 @@ public class StocksService {
         List<Stock> allStocks = findAll();
         allStocks.stream().forEach(x -> {
                     try { Optional<String> stockPrice = HttpRequests.getApacheHttpClientResponseFromURL
-                            (marketStack.appendRequest(x.getTickerSymbol()));
+                            (marketStack.appendRequestWithSymbol(x.getTickerSymbol()));
                         stockPrice.ifPresent(y -> x.setLastPrice(new BigDecimal(y)));
                         repository.save(x);
                     } catch (IOException e) {
