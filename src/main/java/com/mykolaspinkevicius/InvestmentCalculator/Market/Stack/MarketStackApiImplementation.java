@@ -31,7 +31,7 @@ public class MarketStackApiImplementation {
 
     private StringBuilder appendRequest(String... strings) {
         StringBuilder sb = new StringBuilder();
-        Arrays.stream(strings).forEach(x -> sb.append(x));
+        Arrays.stream(strings).forEach(sb::append);
         return sb;
     }
 }

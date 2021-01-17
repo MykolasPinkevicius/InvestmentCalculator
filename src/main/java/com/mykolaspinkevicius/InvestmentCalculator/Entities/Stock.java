@@ -13,11 +13,13 @@ public class Stock {
     private BigDecimal lastPrice;
     private String tickerSymbol;
     private String name;
+    private String stockExchange;
 
-    public Stock(BigDecimal lastPrice, String tickerSymbol, String name) {
+    public Stock(BigDecimal lastPrice, String tickerSymbol, String name, String stockExchange) {
         this.lastPrice = lastPrice;
         this.tickerSymbol = tickerSymbol;
         this.name = name;
+        this.stockExchange = stockExchange;
     }
 
     public Stock() {}
@@ -54,17 +56,25 @@ public class Stock {
         this.name = name;
     }
 
+    public String getStockExchange() {
+        return stockExchange;
+    }
+
+    public void setStockExchange(String stockExchange) {
+        this.stockExchange = stockExchange;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Stock stock = (Stock) o;
-        return Objects.equals(id, stock.id) && Objects.equals(lastPrice, stock.lastPrice) && Objects.equals(tickerSymbol, stock.tickerSymbol) && Objects.equals(name, stock.name);
+        return Objects.equals(id, stock.id) && Objects.equals(lastPrice, stock.lastPrice) && Objects.equals(tickerSymbol, stock.tickerSymbol) && Objects.equals(name, stock.name) && Objects.equals(stockExchange, stock.stockExchange);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastPrice, tickerSymbol, name);
+        return Objects.hash(id, lastPrice, tickerSymbol, name, stockExchange);
     }
 
     @Override
@@ -74,6 +84,7 @@ public class Stock {
                 ", lastPrice=" + lastPrice +
                 ", tickerSymbol='" + tickerSymbol + '\'' +
                 ", name='" + name + '\'' +
+                ", stockExchange='" + stockExchange + '\'' +
                 '}';
     }
 }

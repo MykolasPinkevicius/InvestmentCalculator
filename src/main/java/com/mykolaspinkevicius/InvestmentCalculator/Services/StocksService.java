@@ -19,6 +19,8 @@ public class StocksService {
     private StockRepository repository;
     @Autowired
     private MarketStackApiImplementation marketStack;
+    @Autowired
+    private HttpRequests request;
 
 
     public List<Stock> findAll() {
@@ -28,7 +30,7 @@ public class StocksService {
     public void updateAllStocks() {
         List<Stock> allStocks = findAll();
         allStocks.stream().forEach(x -> {
-                    try { Optional<String> stockPrice = HttpRequests.getApacheHttpClientResponseFromURL
+                    try { Optional<String> stockPrice = request.getApacheHttpClientResponseFromURL
                             (marketStack.appendRequestWithSymbol(x.getTickerSymbol()));
                         stockPrice.ifPresent(y -> x.setLastPrice(new BigDecimal(y)));
                         repository.save(x);
@@ -37,5 +39,9 @@ public class StocksService {
                     }
                 }
         );
+    }
+
+    public void createStock(Stock stock) {
+        repository.save(stock);
     }
 }
