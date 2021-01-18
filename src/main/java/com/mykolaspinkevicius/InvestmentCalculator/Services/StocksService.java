@@ -15,6 +15,7 @@ import java.util.Optional;
 @Service
 public class StocksService {
 
+    public static final String WELCOME_MESSAGE = "Welcome to your investment calculator";
     @Autowired
     private StockRepository repository;
     @Autowired
@@ -29,9 +30,10 @@ public class StocksService {
 
     public void updateAllStocks() {
         List<Stock> allStocks = findAll();
-        allStocks.stream().forEach(x -> {
-                    try { Optional<String> stockPrice = request.getApacheHttpClientResponseFromURL
-                            (marketStack.appendRequestWithSymbol(x.getTickerSymbol()));
+        allStocks.forEach(x -> {
+                    try {
+                        Optional<String> stockPrice = request.getApacheHttpClientResponseFromURL
+                                (marketStack.appendRequestWithSymbol(x.getTickerSymbol()));
                         stockPrice.ifPresent(y -> x.setLastPrice(new BigDecimal(y)));
                         repository.save(x);
                     } catch (IOException e) {
@@ -43,5 +45,10 @@ public class StocksService {
 
     public void createStock(Stock stock) {
         repository.save(stock);
+    }
+
+    public String welcome() {
+        return WELCOME_MESSAGE;
+
     }
 }

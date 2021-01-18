@@ -22,9 +22,14 @@ public class StockController {
     public void updateAllStocks() {
         stocksService.updateAllStocks();
     }
+
     @PostMapping("/addStock")
     public void addStock(@RequestBody Stock stock) {
         stocksService.createStock(stock);
     }
 
+    @RequestMapping("/")
+    public String welcome() {
+        return stocksService.welcome();
+    }
 }
