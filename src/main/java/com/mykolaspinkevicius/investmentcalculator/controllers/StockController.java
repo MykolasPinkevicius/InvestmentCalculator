@@ -1,7 +1,7 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Controllers;
+package com.mykolaspinkevicius.investmentcalculator.controllers;
 
-import com.mykolaspinkevicius.InvestmentCalculator.Entities.Stock;
-import com.mykolaspinkevicius.InvestmentCalculator.Services.StocksService;
+import com.mykolaspinkevicius.investmentcalculator.entities.Stock;
+import com.mykolaspinkevicius.investmentcalculator.services.StocksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,7 @@ public class StockController {
         stocksService.createStock(stock);
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String welcome() {
         return stocksService.welcome();
     }

@@ -1,6 +1,6 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Market.Stack;
+package com.mykolaspinkevicius.investmentcalculator.market.stack;
 
-import com.mykolaspinkevicius.InvestmentCalculator.StockUtils.StocksUtils;
+import com.mykolaspinkevicius.investmentcalculator.utils.StocksUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

@@ -1,9 +1,9 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Services;
+package com.mykolaspinkevicius.investmentcalculator.services;
 
-import com.mykolaspinkevicius.InvestmentCalculator.Entities.Stock;
-import com.mykolaspinkevicius.InvestmentCalculator.Http.HttpRequests;
-import com.mykolaspinkevicius.InvestmentCalculator.JPA.StockRepository;
-import com.mykolaspinkevicius.InvestmentCalculator.Market.Stack.MarketStackApiImplementation;
+import com.mykolaspinkevicius.investmentcalculator.entities.Stock;
+import com.mykolaspinkevicius.investmentcalculator.http.HttpRequests;
+import com.mykolaspinkevicius.investmentcalculator.jpa.StockRepository;
+import com.mykolaspinkevicius.investmentcalculator.market.stack.MarketStackApiImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

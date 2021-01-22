@@ -1,4 +1,4 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Entities;
+package com.mykolaspinkevicius.investmentcalculator.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,9 @@ import java.util.Objects;
 @Entity
 public class Stock {
 
-    private @Id @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private BigDecimal lastPrice;
     private String tickerSymbol;
     private String name;
@@ -22,7 +24,8 @@ public class Stock {
         this.stockExchange = stockExchange;
     }
 
-    public Stock() {}
+    public Stock() {
+    }
 
     public Long getId() {
         return id;

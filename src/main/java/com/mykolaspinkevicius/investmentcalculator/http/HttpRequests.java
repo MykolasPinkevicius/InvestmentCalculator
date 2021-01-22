@@ -1,9 +1,9 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Http;
+package com.mykolaspinkevicius.investmentcalculator.http;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mykolaspinkevicius.InvestmentCalculator.Entities.MarketStack;
-import com.mykolaspinkevicius.InvestmentCalculator.Entities.MarketStackData;
+import com.mykolaspinkevicius.investmentcalculator.entities.MarketStack;
+import com.mykolaspinkevicius.investmentcalculator.entities.MarketStackData;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -40,8 +40,7 @@ public class HttpRequests {
 
     private MarketStack mapRequestStringToMarketStack(StringBuilder jsonFromRequest) throws com.fasterxml.jackson.core.JsonProcessingException {
         ObjectMapper jsonObjectMapper = new ObjectMapper();
-        MarketStack paginationWithDataFromJson = jsonObjectMapper.readValue(jsonFromRequest.toString(), MarketStack.class);
-        return paginationWithDataFromJson;
+        return jsonObjectMapper.readValue(jsonFromRequest.toString(), MarketStack.class);
     }
 
     private StringBuilder responseToString(HttpEntity entity) throws IOException {

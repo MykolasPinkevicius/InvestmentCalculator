@@ -1,7 +1,7 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Configuration;
+package com.mykolaspinkevicius.investmentcalculator.configuration;
 
-import com.mykolaspinkevicius.InvestmentCalculator.Entities.Stock;
-import com.mykolaspinkevicius.InvestmentCalculator.JPA.StockRepository;
+import com.mykolaspinkevicius.investmentcalculator.entities.Stock;
+import com.mykolaspinkevicius.investmentcalculator.jpa.StockRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

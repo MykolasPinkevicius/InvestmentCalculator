@@ -1,4 +1,4 @@
-package com.mykolaspinkevicius.InvestmentCalculator.Entities;
+package com.mykolaspinkevicius.investmentcalculator.entities;
 
 import java.util.Objects;
 
