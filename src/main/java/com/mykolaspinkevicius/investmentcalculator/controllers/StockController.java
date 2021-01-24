@@ -27,9 +27,4 @@ public class StockController {
     public void addStock(@RequestBody Stock stock) {
         stocksService.createStock(stock);
     }
-
-    @GetMapping("/")
-    public String welcome() {
-        return stocksService.welcome();
-    }
 }

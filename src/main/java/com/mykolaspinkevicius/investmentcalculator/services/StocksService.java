@@ -15,7 +15,6 @@ import java.util.Optional;
 @Service
 public class StocksService {
 
-    public static final String WELCOME_MESSAGE = "Welcome to your investment calculator";
     @Autowired
     private StockRepository repository;
     @Autowired
@@ -45,10 +44,5 @@ public class StocksService {
 
     public void createStock(Stock stock) {
         repository.save(stock);
-    }
-
-    public String welcome() {
-        return WELCOME_MESSAGE;
-
     }
 }

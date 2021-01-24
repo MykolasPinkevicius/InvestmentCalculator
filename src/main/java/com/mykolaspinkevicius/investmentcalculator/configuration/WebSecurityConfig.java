@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public static final int TOKEN_VALIDITY_SECONDS = 86400;
+    public static final int TOKEN_VALIDITY_SECONDS = 3600;
 
     @Autowired
     DataSource dataSource;
@@ -29,17 +29,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.authorizeRequests().antMatchers("/login", "/logout", "/h2-console").permitAll();
+        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/stocks").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/v2/api-docs",
                 "/configuration/ui",
                 "/swagger-resources/**",
                 "/configuration/security",
                 "swagger-ui.html",
+                "/swagger-ui/index.html",
                 "/webjars/**",
                 "/configuration/**",
-                "/swagger*/**").permitAll();
-        http.authorizeRequests().antMatchers("/", "/login", "/logout", "/h2-console").permitAll();
-        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+                "/swagger*/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
         http.authorizeRequests().and().formLogin()
